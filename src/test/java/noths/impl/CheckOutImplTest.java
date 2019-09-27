@@ -28,6 +28,11 @@ public class CheckOutImplTest {
         buildTestItems();
     }
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void testServiceBreaksIfFalsyCallMade() {
+        assertEquals(19.95, checkOut.calculateFinalPrice(null),0d);
+    }
+
     @Test
     public void noDiscountShouldApply() {
         List<Item> scenario = Collections.singletonList(item3);

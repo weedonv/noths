@@ -20,6 +20,11 @@ public class CheckOutImpl implements CheckOut {
     @Override
     public Double calculateFinalPrice(List<Item> items) {
 
+        if (items == null || items.isEmpty()) {
+            //never display a fallback price for users ever
+            throw new UnsupportedOperationException();
+        }
+
         double initialPrice = ItemPriceCalculation.calculate(items);
 
         return applyActivePromotionalRules(initialPrice, items);
